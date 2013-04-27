@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Map Site</title>
+    <link rel="stylesheet" href="map.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+</head>
+<body class="right">
+    <div id="header"><div class="limiter">
+        <img src="img/unhcr_logo.png">
+	<h1>DJABAL REFUGEE CAMP, Eastern Chad, 2005</h1>
+    </div></div>
+    <div id="content"><div class="limiter">
+        <h2>Base layers:</h2>
+        <div id="nav" class="layers">
+          <a data-control="layer" href="#services">Services</a>
+          <a data-control="layer" href="#address">Addressing sytem</a>
+        </div>
+        <h2>Refugee population:</h2>
+        <div id="nav" class="layers">
+          <a data-control="layer" href="#popblocks">By blocks</a>
+          <a data-control="layer" href="#poplots">By lots</a>
+	  <a data-control="layer" href="#popdensity">Population density</a>
+	  <a data-control="layer" href="#popethnicity">Ethnicity</a>
+        </div>
+        <h2>Water and Sanitation:</h2>
+        <div id="nav" class="layers">
+          <a data-control="layer" href="#watsan">Taps, bladders and tanks</a>
+	  <a data-control="layer" href="#watsanbuff">200m distance buffers</a>
+        </div>
+    </div></div>
+    <div id="map" class="map"></div>
+
+    <!-- External libraries and site script -->
+    <script src="ext/jquery.min.js"></script>
+    <script src="ext/modestmaps.min.js"></script>
+    <script src="ext/wax/wax.mm.js"></script>
+    <script src="ext/wax/wax.ext.js"></script>
+    <script src="ext/easey.js"></script>
+    <script src="ext/mmg.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Site configuration -->
+    <script type="text/javascript">
+
+        // Make a new map in #map
+    var main = Map('map',{
+            api:'http://a.tiles.mapbox.com/v3/unhcr.djabal-admin-roads.jsonp',
+            center: {
+                lat: 12.2265,
+                lon: 21.390,
+                zoom: 16
+            },
+            zoomRange: [16, 17],
+            features: [
+                'zoomwheel',
+                'tooltips',
+                'zoombox',
+                'zoompan',
+                'legend',
+                'share'
+            ]
+        });
+
+        main.layers({
+            services: {
+            	api:'http://a.tiles.mapbox.com/v3/unhcr.djabal-services.jsonp',
+                center: {
+		 lat: 12.2265,
+                 lon: 21.390,
+                 zoom: 16,
+                 ease: 1000
+                },
+                group: 0,
+                initial: true
+            },
+            address: {
+            	api:'http://a.tiles.mapbox.com/v3/unhcr.djabal-addressing-system.jsonp',
+                center: {
+                    lat: 12.2265,
+                    lon: 21.390,
+                    zoom: 16,
+                    ease: 2000
+                },
+                group: 1
+            },
+	    popblocks: {
+		api:'http://a.tiles.mapbox.com/v3/unhcr.djabal-pop-blocks.jsonp',
+                center: {
+                    lat: 12.2265,
+                    lon: 21.390,
+                    zoom: 16,
+                    ease: 2000
+                },
+                group: 2
+	    },
+	    poplots: {
+		api:'http://a.tiles.mapbox.com/v3/unhcr.djabal-pop-lots.jsonp',
+                center: {
+                    lat: 12.2265,
+                    lon: 21.390,
+                    zoom: 16,
+                    ease: 2000
+                },
+                group: 2
+	    },
+	    popdensity: {
+		api:'http://a.tiles.mapbox.com/v3/unhcr.djabal-density-new.jsonp',
+                center: {
+                    lat: 12.2265,
+                    lon: 21.390,
+                    zoom: 16,
+                    ease: 2000
+                },
+                group: 2
+	    },
+	    popethnicity: {
+		api:'http://a.tiles.mapbox.com/v3/unhcr.djabal-ethnicity-updated2.jsonp',
+                center: {
+                    lat: 12.2265,
+                    lon: 21.390,
+                    zoom: 16,
+                    ease: 2000
+                },
+                group: 2
+	    },
+	    watsan: {
+		api:'http://a.tiles.mapbox.com/v3/unhcr.djabal-watsan-updated2.jsonp',
+                center: {
+                    lat: 12.2265,
+                    lon: 21.390,
+                    zoom: 16,
+                    ease: 2000
+                },
+                group: 3
+	    },
+	    watsanbuff: {
+		api:'http://a.tiles.mapbox.com/v3/unhcr.djabal-watsan-buff.jsonp',
+                center: {
+                    lat: 12.2265,
+                    lon: 21.390,
+                    zoom: 16,
+                    ease: 2000
+                },
+                group: 4
+	    }
+        });
+    </script>
+</body>
+</html>
